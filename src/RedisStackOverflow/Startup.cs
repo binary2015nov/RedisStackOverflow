@@ -1,13 +1,12 @@
 ﻿using Funq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RedisStackOverflow.ServiceInterface;
 using ServiceStack;
 using ServiceStack.Redis;
-using IRepository = ServiceStack.IRepository;
+using IRepository = RedisStackOverflow.ServiceInterface.IRepository;
 
 namespace RedisStackOverflow
 {
@@ -54,7 +53,7 @@ namespace RedisStackOverflow
 
             //Register any dependencies you want injected into your services
             container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
-            container.Register<ServiceInterface.IRepository>(c => new Repository(c.Resolve<IRedisClientsManager>()));
+            container.Register<IRepository>(c => new Repository(c.Resolve<IRedisClientsManager>()));
         }
     }
 }
