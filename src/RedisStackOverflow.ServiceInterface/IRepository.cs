@@ -53,34 +53,34 @@ namespace RedisStackOverflow.ServiceInterface
         //Definition of all the redis keys that are used for indexes
         static class TagIndex
         {
-            public static string Questions(string tag) { return "urn:tags>q:" + tag.ToLower(); }
-            public static string All { get { return "urn:tags"; } }
+            public static string Questions(string tag) => "urn:tags>q:" + tag.ToLower();
+            public static string All => "urn:tags";
         }
 
         static class QuestionUserIndex
         {
-            public static string UpVotes(long questionId) { return "urn:q>user+:" + questionId; }
-            public static string DownVotes(long questionId) { return "urn:q>user-:" + questionId; }
+            public static string UpVotes(long questionId) => "urn:q>user+:" + questionId;
+            public static string DownVotes(long questionId) => "urn:q>user-:" + questionId;
         }
 
         static class UserQuestionIndex
         {
-            public static string Questions(long userId) { return "urn:user>q:" + userId; }
-            public static string UpVotes(long userId) { return "urn:user>q+:" + userId; }
-            public static string DownVotes(long userId) { return "urn:user>q-:" + userId; }
+            public static string Questions(long userId) => "urn:user>q:" + userId;
+            public static string UpVotes(long userId) => "urn:user>q+:" + userId;
+            public static string DownVotes(long userId) => "urn:user>q-:" + userId;
         }
 
         static class AnswerUserIndex
         {
-            public static string UpVotes(long answerId) { return "urn:a>user+:" + answerId; }
-            public static string DownVotes(long answerId) { return "urn:a>user-:" + answerId; }
+            public static string UpVotes(long answerId) => "urn:a>user+:" + answerId;
+            public static string DownVotes(long answerId) => "urn:a>user-:" + answerId;
         }
 
         static class UserAnswerIndex
         {
-            public static string Answers(long userId) { return "urn:user>a:" + userId; }
-            public static string UpVotes(long userId) { return "urn:user>a+:" + userId; }
-            public static string DownVotes(long userId) { return "urn:user>a-:" + userId; }
+            public static string Answers(long userId) => "urn:user>a:" + userId;
+            public static string UpVotes(long userId) => "urn:user>a+:" + userId;
+            public static string DownVotes(long userId) => "urn:user>a-:" + userId;
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace RedisStackOverflow.ServiceInterface
                 redisUsers.Store(user);
 
                 //Save reference to User key using the DisplayName alias
-                redis.SetEntry(userIdAliasKey, user.CreateUrn());
+                redis.SetValue(userIdAliasKey, user.CreateUrn());
 
                 return redisUsers.GetById(user.Id);
             }
