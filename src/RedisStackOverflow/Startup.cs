@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using RedisStackOverflow.ServiceInterface;
 using ServiceStack;
 using ServiceStack.Redis;
+using ServiceStack.Text;
 using IRepository = RedisStackOverflow.ServiceInterface.IRepository;
 
 namespace RedisStackOverflow
@@ -49,7 +50,11 @@ namespace RedisStackOverflow
         public override void Configure(Container container)
         {
             //Show StackTrace in Web Service Exceptions
-            SetConfig(new HostConfig { DebugMode = true });
+            SetConfig(new HostConfig
+            {
+                DebugMode = true,
+                UseCamelCase = false,
+            });
 
             //Register any dependencies you want injected into your services
             container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
