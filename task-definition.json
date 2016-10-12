@@ -34,8 +34,8 @@
             "essential": true,
             "portMappings": [
                 {
-                    "hostPort": 6379,
-                    "containerPort": 6380,
+                    "hostPort": 6380,
+                    "containerPort": 6379,
                     "protocol": "tcp"
                 }
             ]
