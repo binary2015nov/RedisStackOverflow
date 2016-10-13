@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RedisStackOverflow.ServiceInterface;
+using System;
 using ServiceStack;
 using ServiceStack.Redis;
 using ServiceStack.Text;
@@ -57,7 +58,9 @@ namespace RedisStackOverflow
             });
 
             //Register any dependencies you want injected into your services
-            container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
+            var configuredRedisHost = Environment.GetEnvironmentVariable("AWS_REDIS_HOST") ?? "localhost";
+            container.Register<IRedisClientsManager>(c => 
+                new RedisManagerPool(AppSettings.Get("RedisHost", defaultValue: $"{configuredRedisHost}:6379")));
             container.Register<IRepository>(c => new Repository(c.Resolve<IRedisClientsManager>()));
         }
     }
