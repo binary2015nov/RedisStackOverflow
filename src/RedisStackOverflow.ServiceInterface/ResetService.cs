@@ -64,7 +64,7 @@ namespace RedisStackOverflow.ServiceInterface
 
             questions.ForEach(q => Repository.StoreQuestion(q));
 
-            return new ResetResponse();
+            return HttpResult.Redirect("/");
         }
     }
 }
