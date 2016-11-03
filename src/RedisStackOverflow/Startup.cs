@@ -42,7 +42,12 @@ namespace RedisStackOverflow
         /// <summary>
         /// Initializes a new instance of your ServiceStack application, with the specified name and assembly containing the services.
         /// </summary>
-        public AppHost() : base("Redis StackOverflow", typeof(QuestionsService).GetAssembly()) { }
+        public AppHost() : base("Redis StackOverflow", typeof(QuestionsService).GetAssembly()) 
+        { 
+            AppSettings = new MultiAppSettings(
+                new EnvironmentVariableSettings(),
+                new AppSettings());
+        }
 
         /// <summary>
         /// Configure the container with the necessary routes for your ServiceStack application.
@@ -58,9 +63,9 @@ namespace RedisStackOverflow
             });
 
             //Register any dependencies you want injected into your services
-            var configuredRedisHost = Environment.GetEnvironmentVariable("AWS_REDIS_HOST") ?? "localhost";
-            container.Register<IRedisClientsManager>(c => 
-                new RedisManagerPool(AppSettings.Get("RedisHost", defaultValue: $"{configuredRedisHost}:6379")));
+            container.Register<IRedisClientsManager>(c =>
+                new RedisManagerPool(AppSettings.Get("REDIS_HOST", defaultValue:"localhost")));
+
             container.Register<IRepository>(c => new Repository(c.Resolve<IRedisClientsManager>()));
         }
     }
