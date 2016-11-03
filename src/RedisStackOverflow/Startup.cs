@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using RedisStackOverflow.ServiceInterface;
 using System;
 using ServiceStack;
+using ServiceStack.Configuration;
 using ServiceStack.Redis;
 using ServiceStack.Text;
 using IRepository = RedisStackOverflow.ServiceInterface.IRepository;
