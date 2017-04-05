@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisStackOverflow", "RedisStackOverflow\RedisStackOverflow.xproj", "{9519431C-487D-4F53-88B8-1371635A0C78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisStackOverflow", "RedisStackOverflow\RedisStackOverflow.csproj", "{9519431C-487D-4F53-88B8-1371635A0C78}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisStackOverflow.ServiceInterface", "RedisStackOverflow.ServiceInterface\RedisStackOverflow.ServiceInterface.xproj", "{FF2B473F-40BB-42EB-966D-B32BEF951D02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisStackOverflow.ServiceInterface", "RedisStackOverflow.ServiceInterface\RedisStackOverflow.ServiceInterface.csproj", "{FF2B473F-40BB-42EB-966D-B32BEF951D02}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisStackOverflow.ServiceModel", "RedisStackOverflow.ServiceModel\RedisStackOverflow.ServiceModel.xproj", "{BCD1000E-A615-49EB-B6E9-72B2A22BC93A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisStackOverflow.ServiceModel", "RedisStackOverflow.ServiceModel\RedisStackOverflow.ServiceModel.csproj", "{BCD1000E-A615-49EB-B6E9-72B2A22BC93A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
