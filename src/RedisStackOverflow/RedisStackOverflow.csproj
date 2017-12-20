@@ -21,12 +21,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.*" />
-    <PackageReference Include="ServiceStack" Version="5.*" />
-    <PackageReference Include="ServiceStack.Interfaces" Version="5.*" />
-    <PackageReference Include="ServiceStack.Text" Version="5.*" />
-    <PackageReference Include="ServiceStack.Client" Version="5.*" />
-    <PackageReference Include="ServiceStack.Common" Version="5.*" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.*" />
+    <Reference Include="..\..\lib\ServiceStack.dll" />
+    <Reference Include="..\..\lib\ServiceStack.Interfaces.dll" />
+    <Reference Include="..\..\lib\ServiceStack.Text.dll" />
+    <Reference Include="..\..\lib\ServiceStack.Client.dll" />
+    <Reference Include="..\..\lib\ServiceStack.Common.dll" />
+    <Reference Include="..\..\lib\ServiceStack.Redis.dll" />
   </ItemGroup>
 
 </Project>

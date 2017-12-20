@@ -17,9 +17,7 @@ namespace RedisStackOverflow
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
-        {
-        }
+        public void ConfigureServices(IServiceCollection services) { }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -31,7 +29,12 @@ namespace RedisStackOverflow
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseServiceStack(new AppHost());
+            app.UseServiceStack(new AppHost
+            {
+                AppSettings = new MultiAppSettings(
+                    new EnvironmentVariableSettings(),
+                    new AppSettings())
+            });
         }
     }
 
@@ -43,11 +46,10 @@ namespace RedisStackOverflow
         /// <summary>
         /// Initializes a new instance of your ServiceStack application, with the specified name and assembly containing the services.
         /// </summary>
-        public AppHost() : base("Redis StackOverflow", typeof(QuestionsService).GetAssembly()) 
-        { 
-            AppSettings = new MultiAppSettings(
-                new EnvironmentVariableSettings(),
-                new AppSettings());
+        public AppHost() : base("Redis StackOverflow", typeof(QuestionsService).Assembly) 
+        {
+            Config.DebugMode = true;
+            Config.UseCamelCase = false;       
         }
 
         /// <summary>
@@ -56,13 +58,6 @@ namespace RedisStackOverflow
         /// <param name="container">The built-in IoC used with ServiceStack.</param>
         public override void Configure(Container container)
         {
-            //Show StackTrace in Web Service Exceptions
-            SetConfig(new HostConfig
-            {
-                DebugMode = true,
-                UseCamelCase = false,
-            });
-
             //Register any dependencies you want injected into your services
             container.Register<IRedisClientsManager>(c =>
                 new RedisManagerPool(AppSettings.Get("REDIS_HOST", defaultValue:"localhost")));
